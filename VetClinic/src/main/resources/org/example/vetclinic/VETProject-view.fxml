@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ComboBox?>
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.vetclinic.controller.VETClinicController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <MenuBar>
+        <Menu text="Файл">
+            <MenuItem text="Выход" onAction="#onExitMenuItemClick"/>
+        </Menu>
+        <Menu text="Отчеты">
+            <MenuItem text="Отчет о приемах за период" onAction="#onVisitsReportMenuItemClick"/>
+            <MenuItem text="Отчет по товарам и услугам" onAction="#onProductsServicesReportMenuItemClick"/>
+            <MenuItem text="Отчет по клиентам и питомцам" onAction="#onClientsPetsReportMenuItemClick"/>
+        </Menu>
+        <Menu text="Справочники">
+            <MenuItem text="Виды животных" onAction="#onManageSpeciesButtonClick"/>
+            <MenuItem text="Породы животных" onAction="#onManageBreedsButtonClick"/>
+            <MenuItem text="Виды контактной информации" onAction="#onManageContactTypesButtonClick"/>
+            <MenuItem text="Специализации врачей" onAction="#onManageSpecializationsButtonClick"/>
+            <SeparatorMenuItem/>
+            <MenuItem text="Категории товаров" onAction="#onManageProductCategoriesButtonClick"/>
+            <MenuItem text="Категории услуг" onAction="#onManageServiceCategoriesButtonClick"/>
+            <SeparatorMenuItem/>
+            <MenuItem text="Товары" onAction="#onManageProductsButtonClick"/>
+            <MenuItem text="Услуги" onAction="#onManageServicesButtonClick"/>
+        </Menu>
+    </MenuBar>
+
+    <TabPane>
+        <Tab text="Клиенты">
+            <VBox>
+                <HBox spacing="10">
+                    <Label text="Поиск клиента:"/>
+                    <TextField fx:id="clientSearchField"
+                               promptText="Фамилия, Имя или Отчество"
+                               prefWidth="300"
+                               prefHeight="30"
+                               onAction="#onClientSearchAction"
+                               HBox.hgrow="ALWAYS"/>
+                    <Button text="Найти"
+                            onAction="#onClientSearchButtonClick"
+                            prefWidth="100"
+                            prefHeight="30"/>
+                    <Button text="Сбросить"
+                            onAction="#onClientSearchResetButtonClick"
+                            prefWidth="100"
+                            prefHeight="30"/>
+                </HBox>
+
+                <HBox>
+                    <Button text="Добавить клиента"
+                            onAction="#onAddClientButtonClick"
+                            prefWidth="120"
+                            prefHeight="40"/>
+                    <Button text="Удалить клиента"
+                            onAction="#onDeleteClientButtonClick"
+                            prefWidth="120"
+                            prefHeight="40"/>
+
+                    <Button text="Редактировать клиента"
+                            onAction="#onChangeClientButtonClick"
+                            prefWidth="120"
+                            prefHeight="40"/>
+                    <Button text="Контактная информация"
+                            onAction="#onContactInfoButtonClick"
+                            prefWidth="180"
+                            prefHeight="40"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                </HBox>
+
+            <TableView fx:id="clientTable">
+                <columns>
+                    <TableColumn text="Фамилия" prefWidth="100">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="lastName" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Имя" prefWidth="100">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="firstName" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Отчество" prefWidth="100">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="middleName" />
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+
+                <HBox spacing="10">
+                    <Button text="Добавить животное"
+                            onAction="#onAddPetButtonClick"
+                            prefWidth="140"
+                            prefHeight="40"/>
+                    <Button text="Редактировать животное"
+                            onAction="#onEditPetButtonClick"
+                            prefWidth="160"
+                            prefHeight="40"/>
+                    <Button text="Удалить животное"
+                            onAction="#onDeletePetButtonClick"
+                            prefWidth="140"
+                            prefHeight="40"/>
+                </HBox>
+
+            <TableView fx:id="animalTable">
+                <columns>
+                    <TableColumn text="Клиент" prefWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="clientName" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Кличка" prefWidth="100">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="name" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Вид" prefWidth="100">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="speciesName" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Порода" prefWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="breedName" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Возраст" prefWidth="80">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="age" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Пол" prefWidth="60">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="gender" />
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+            </VBox>
+        </Tab>
+        <Tab text="Сотрудники">
+            <VBox>
+                <HBox spacing="10">
+                    <Button text="Добавить сотрудника"
+                            onAction="#onAddEmployeeButtonClick"
+                            prefWidth="140"
+                            prefHeight="40"/>
+                    <Button text="Редактировать сотрудника"
+                            onAction="#onEditEmployeeButtonClick"
+                            prefWidth="160"
+                            prefHeight="40"/>
+                    <Button text="Удалить сотрудника"
+                            onAction="#onDeleteEmployeeButtonClick"
+                            prefWidth="140"
+                            prefHeight="40"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                </HBox>
+
+                <TableView fx:id="employeeTable">
+                    <columns>
+                        <TableColumn text="Фамилия" prefWidth="100">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="lastName" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Имя" prefWidth="100">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="firstName" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Отчество" prefWidth="100">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="middleName" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Специальность" prefWidth="150">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="specializationName" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Дата приема" prefWidth="120">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="hireDate" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Дата увольнения" prefWidth="120">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="dismissalDate" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Активен" prefWidth="80">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="active" />
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                </TableView>
+            </VBox>
+        </Tab>
+        <Tab text="Документы">
+            <VBox>
+                <TabPane>
+                    <Tab text="Заявки на прием">
+                        <VBox>
+                            <HBox spacing="10" style="-fx-padding: 10;">
+                                <Label text="Фильтр:"/>
+                                <Label text="Клиент:"/>
+                                <ComboBox fx:id="appointmentClientFilter"
+                                          promptText="Все клиенты"
+                                          prefWidth="200"
+                                          prefHeight="30"/>
+                                <Label text="Сотрудник:"/>
+                                <ComboBox fx:id="appointmentEmployeeFilter"
+                                          promptText="Все сотрудники"
+                                          prefWidth="200"
+                                          prefHeight="30"/>
+                                <Label text="Статус:"/>
+                                <ComboBox fx:id="appointmentStatusFilter"
+                                          promptText="Все статусы"
+                                          prefWidth="150"
+                                          prefHeight="30"/>
+                                <Button text="Сбросить фильтр"
+                                        onAction="#onAppointmentFilterResetButtonClick"
+                                        prefWidth="140"
+                                        prefHeight="30"/>
+                            </HBox>
+
+                            <HBox spacing="10" style="-fx-padding: 10;">
+                                <Label text="Сортировка:"/>
+                                <Label text="По полю:"/>
+                                <ComboBox fx:id="appointmentSortField"
+                                          prefWidth="180"
+                                          prefHeight="30"/>
+                                <Label text="Направление:"/>
+                                <ComboBox fx:id="appointmentSortDirection"
+                                          prefWidth="150"
+                                          prefHeight="30"/>
+                            </HBox>
+
+                            <HBox spacing="10">
+                                <Button text="Создать заявку на прием"
+                                        onAction="#onAddAppointmentButtonClick"
+                                        prefWidth="180"
+                                        prefHeight="40"/>
+                                <Button text="Редактировать"
+                                        onAction="#onEditAppointmentButtonClick"
+                                        prefWidth="140"
+                                        prefHeight="40"/>
+                                <Button text="Оформить прием врача"
+                                        onAction="#onCreateVisitFromAppointmentButtonClick"
+                                        prefWidth="180"
+                                        prefHeight="40"/>
+                            </HBox>
+
+                            <TableView fx:id="appointmentTable">
+                    <columns>
+                        <TableColumn text="Дата" prefWidth="100">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="appointmentDate" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Время" prefWidth="80">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="appointmentTime" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Клиент" prefWidth="150">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="clientName" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Животное" prefWidth="120">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="petName" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Сотрудник" prefWidth="150">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="employeeName" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Статус" prefWidth="120">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="statusDisplay" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Заметки" prefWidth="200">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="notes" />
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                </TableView>
+                        </VBox>
+                    </Tab>
+                    <Tab text="Приемы врача">
+                        <VBox>
+                            <HBox spacing="10" style="-fx-padding: 10;">
+                                <Label text="Фильтр:"/>
+                                <Label text="Врач:"/>
+                                <ComboBox fx:id="visitEmployeeFilter"
+                                          promptText="Все врачи"
+                                          prefWidth="200"
+                                          prefHeight="30"/>
+                                <Label text="Клиент:"/>
+                                <ComboBox fx:id="visitClientFilter"
+                                          promptText="Все клиенты"
+                                          prefWidth="200"
+                                          prefHeight="30"/>
+                                <Label text="Питомец:"/>
+                                <ComboBox fx:id="visitPetFilter"
+                                          promptText="Все питомцы"
+                                          prefWidth="200"
+                                          prefHeight="30"/>
+                                <Button text="Сбросить фильтр"
+                                        onAction="#onVisitFilterResetButtonClick"
+                                        prefWidth="140"
+                                        prefHeight="30"/>
+                            </HBox>
+
+                            <HBox spacing="10" style="-fx-padding: 0 10 10 10;">
+                                <Label text="Сортировка:"/>
+                                <Label text="По полю:"/>
+                                <ComboBox fx:id="visitSortField"
+                                          prefWidth="180"
+                                          prefHeight="30"/>
+                                <Label text="Направление:"/>
+                                <ComboBox fx:id="visitSortDirection"
+                                          prefWidth="150"
+                                          prefHeight="30"/>
+                            </HBox>
+
+                            <HBox spacing="10">
+                                <Button text="Создать прием"
+                                        onAction="#onAddVisitButtonClick"
+                                        prefWidth="140"
+                                        prefHeight="40"/>
+                                <Button text="Редактировать"
+                                        onAction="#onEditVisitButtonClick"
+                                        prefWidth="140"
+                                        prefHeight="40"/>
+                                <Button text="Оплатить"
+                                        onAction="#onPayVisitButtonClick"
+                                        prefWidth="140"
+                                        prefHeight="40"/>
+                            </HBox>
+
+                            <TableView fx:id="visitTable">
+                                <columns>
+                                    <TableColumn text="Дата" prefWidth="100">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="visitDate" />
+                                        </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn text="Время начала" prefWidth="100">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="startTime" />
+                                        </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn text="Клиент" prefWidth="150">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="clientName" />
+                                        </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn text="Животное" prefWidth="120">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="petName" />
+                                        </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn text="Врач" prefWidth="150">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="employeeName" />
+                                        </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn text="Диагноз" prefWidth="200">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="diagnosis" />
+                                        </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn text="Стоимость" prefWidth="100">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="totalCost" />
+                                        </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn text="Оплата" prefWidth="120">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="paymentStatus" />
+                                        </cellValueFactory>
+                                    </TableColumn>
+                                </columns>
+                            </TableView>
+                        </VBox>
+                    </Tab>
+                    <Tab text="Оплаты">
+                        <VBox>
+                            <HBox spacing="10">
+                                <Button text="Создать оплату"
+                                        onAction="#onAddPaymentButtonClick"
+                                        prefWidth="140"
+                                        prefHeight="40"/>
+                                <Button text="Редактировать"
+                                        onAction="#onEditPaymentButtonClick"
+                                        prefWidth="140"
+                                        prefHeight="40"/>
+                            </HBox>
+
+                            <TableView fx:id="paymentTable">
+                                <columns>
+                                    <TableColumn text="Дата и время" prefWidth="150">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="paymentDate" />
+                                        </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn text="Прием" prefWidth="150">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="visitInfo" />
+                                        </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn text="Сумма" prefWidth="100">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="amount" />
+                                        </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn text="Способ оплаты" prefWidth="150">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="paymentMethodName" />
+                                        </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn text="Статус" prefWidth="120">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="statusDisplay" />
+                                        </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn text="Заметки" prefWidth="200">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="notes" />
+                                        </cellValueFactory>
+                                    </TableColumn>
+                                </columns>
+                            </TableView>
+                        </VBox>
+                    </Tab>
+                </TabPane>
+            </VBox>
+        </Tab>
+
+    </TabPane>
+</VBox>

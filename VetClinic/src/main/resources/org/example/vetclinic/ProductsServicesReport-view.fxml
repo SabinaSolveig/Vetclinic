@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.vetclinic.controller.ProductsServicesReportController"
+            prefHeight="700.0" prefWidth="1000.0">
+
+<top>
+    <VBox spacing="10" style="-fx-padding: 20;">
+        <Label text="Отчет по реализованным товарам и услугам" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+        <Label fx:id="periodLabel" text="" style="-fx-font-size: 14;"/>
+    </VBox>
+</top>
+
+<center>
+    <VBox spacing="10" style="-fx-padding: 20;">
+        <Label text="Детализация по врачам, товарам и услугам" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+        
+        <TableView fx:id="reportTable" prefHeight="400">
+            <columns>
+                <TableColumn text="Врач" prefWidth="200">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="employeeName" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Тип" prefWidth="100">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="itemType" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Товар/Услуга" prefWidth="250">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="itemName" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Количество" prefWidth="120">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="quantity" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Стоимость" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="cost" />
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+        
+        <Separator/>
+        
+        <Label text="Итоговые данные по врачам и типам" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+        
+        <TableView fx:id="summaryTable" prefHeight="200">
+            <columns>
+                <TableColumn text="Врач" prefWidth="200">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="employeeName" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Тип" prefWidth="100">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="itemType" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Сумма количества" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="totalQuantity" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Сумма стоимости" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="totalCost" />
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </VBox>
+</center>
+
+<bottom>
+    <HBox spacing="10" alignment="CENTER_RIGHT" style="-fx-padding: 20;">
+        <Button text="Закрыть" onAction="#onCloseButtonClick" prefWidth="100" prefHeight="40"/>
+    </HBox>
+</bottom>
+
+</BorderPane>
+

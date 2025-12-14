@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.vetclinic.controller.VisitsReportController"
+            prefHeight="700.0" prefWidth="1000.0">
+
+<top>
+    <VBox spacing="10" style="-fx-padding: 20;">
+        <Label text="Отчет о приемах за период" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+        <Label fx:id="periodLabel" text="" style="-fx-font-size: 14;"/>
+    </VBox>
+</top>
+
+<center>
+    <VBox spacing="10" style="-fx-padding: 20;">
+        <Label text="Детализация по сотрудникам и клиентам" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+        
+        <TableView fx:id="reportTable" prefHeight="400">
+            <columns>
+                <TableColumn text="Сотрудник" prefWidth="200">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="employeeName" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Клиент" prefWidth="200">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="clientName" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Количество приемов" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="visitCount" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Стоимость" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="totalCost" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Среднее время приема" prefWidth="180">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="averageVisitDuration" />
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+        
+        <Separator/>
+        
+        <Label text="Итоговые данные по сотрудникам" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+        
+        <TableView fx:id="summaryTable" prefHeight="200">
+            <columns>
+                <TableColumn text="Сотрудник" prefWidth="200">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="employeeName" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Сумма приемов" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="totalVisits" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Сумма стоимости" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="totalCostSum" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Уникальных клиентов" prefWidth="180">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="uniqueClients" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Среднее время приема" prefWidth="180">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="averageVisitDurationSummary" />
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </VBox>
+</center>
+
+<bottom>
+    <HBox spacing="10" alignment="CENTER_RIGHT" style="-fx-padding: 20;">
+        <Button text="Закрыть" onAction="#onCloseButtonClick" prefWidth="100" prefHeight="40"/>
+    </HBox>
+</bottom>
+
+</BorderPane>
+

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.Region?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.vetclinic.controller.BreedController"
+      spacing="10"
+      style="-fx-padding: 20;">
+    
+    <Label text="Управление породами животных" style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+    
+    <HBox spacing="10">
+        <Button text="Добавить породу" onAction="#onAddButtonClick" prefWidth="120" prefHeight="30"/>
+        <Button text="Удалить породу" onAction="#onDeleteButtonClick" prefWidth="120" prefHeight="30"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Закрыть" onAction="#onCloseButtonClick" prefWidth="100" prefHeight="30"/>
+    </HBox>
+    
+    <TableView fx:id="breedTable" prefHeight="400" editable="true">
+        <columns>
+            <TableColumn fx:id="speciesNameColumn" text="Вид" prefWidth="200" editable="true">
+            </TableColumn>
+            <TableColumn fx:id="breedNameColumn" text="Название породы" prefWidth="300" editable="true">
+            </TableColumn>
+        </columns>
+    </TableView>
+    
+    <Label text="Для редактирования: дважды кликните на ячейку" 
+           style="-fx-font-size: 12; -fx-text-fill: gray;"/>
+    
+</VBox>
+

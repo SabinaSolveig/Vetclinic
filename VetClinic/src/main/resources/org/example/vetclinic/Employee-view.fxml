@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.vetclinic.controller.EmployeeController"
+            prefHeight="550.0" prefWidth="600.0">
+
+<BorderPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <center>
+        <VBox spacing="10" style="-fx-padding: 20;">
+            <Text text="Сотрудник" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+
+            <GridPane alignment="CENTER" hgap="10" vgap="10" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+
+                
+                <Label text="ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <Label fx:id="idLabel" text="" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                
+                <Label text="Имя:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="firstNameField" GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="300"/>
+
+                
+                <Label text="Фамилия:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField fx:id="lastNameField" GridPane.rowIndex="2" GridPane.columnIndex="1" prefWidth="300"/>
+
+                
+                <Label text="Отчество:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField fx:id="middleNameField" GridPane.rowIndex="3" GridPane.columnIndex="1" prefWidth="300"/>
+
+                
+                <Label text="Дата рождения:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <DatePicker fx:id="birthDatePicker" GridPane.rowIndex="4" GridPane.columnIndex="1" prefWidth="300"/>
+
+                
+                <Label text="Специальность:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="specializationComboBox" GridPane.rowIndex="5" GridPane.columnIndex="1" prefWidth="300"/>
+
+                
+                <Label text="Дата приема:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                <DatePicker fx:id="hireDatePicker" GridPane.rowIndex="6" GridPane.columnIndex="1" prefWidth="300"/>
+
+                
+                <Label text="Дата увольнения:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+                <DatePicker fx:id="dismissalDatePicker" GridPane.rowIndex="7" GridPane.columnIndex="1" prefWidth="300"/>
+
+                
+                <Label text="Активен:" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+                <CheckBox fx:id="activeCheckBox" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
+
+            </GridPane>
+
+            <HBox spacing="10">
+                <Button text="Сохранить" onAction="#onSaveButtonClick" style="-fx-base: #4CAF50;"/>
+                <Button text="Отмена" onAction="#onCancelButtonClick" style="-fx-base: #F44336;"/>
+            </HBox>
+
+        </VBox>
+    </center>
+</BorderPane>
+
+</AnchorPane>
+

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.vetclinic.controller.ClientsPetsReportController"
+            prefHeight="700.0" prefWidth="1200.0">
+    <top>
+        <VBox spacing="10" style="-fx-padding: 20;">
+            <Label text="Отчет по клиентам и их питомцам" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+            <Label fx:id="periodLabel" text="" style="-fx-font-size: 14;"/>
+        </VBox>
+    </top>
+    
+    <center>
+        <VBox spacing="10" style="-fx-padding: 20;">
+            <Label text="Детализация по клиентам и питомцам" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+            
+            <TableView fx:id="reportTable" prefHeight="400">
+                <columns>
+                    <TableColumn text="Клиент" prefWidth="200">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="clientName" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Питомец" prefWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="petName" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Вид" prefWidth="120">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="speciesName" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Порода" prefWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="breedName" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Количество приемов" prefWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="visitCount" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Общая стоимость" prefWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="totalCost" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Средний чек" prefWidth="120">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="averageCheck" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Количество услуг" prefWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="servicesCount" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Количество товаров" prefWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="productsCount" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Процент оплаченных приемов" prefWidth="180">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="paidVisitsPercent" />
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+            
+            <Separator/>
+            
+            <Label text="Итоговые данные" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+            
+            <TableView fx:id="summaryTable" prefHeight="150">
+                <columns>
+                    <TableColumn text="Показатель" prefWidth="250">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="clientName" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Значение" prefWidth="200">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="petName" />
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+    
+    <bottom>
+        <HBox spacing="10" alignment="CENTER_RIGHT" style="-fx-padding: 20;">
+            <Button text="Закрыть" onAction="#onCloseButtonClick" prefWidth="100" prefHeight="40"/>
+        </HBox>
+    </bottom>
+</BorderPane>

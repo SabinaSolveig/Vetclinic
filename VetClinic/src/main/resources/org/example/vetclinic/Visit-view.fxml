@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.vetclinic.controller.VisitController"
+            prefHeight="800.0" prefWidth="1200.0">
+
+<BorderPane>
+    <top>
+        <HBox spacing="10" style="-fx-padding: 10;">
+            <Text text="Прием врача" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <HBox spacing="10">
+                <Button text="Сохранить" onAction="#onSaveButtonClick" style="-fx-base: #4CAF50;" prefWidth="120" prefHeight="40"/>
+                <Button text="Отмена" onAction="#onCancelButtonClick" style="-fx-base: #F44336;" prefWidth="120" prefHeight="40"/>
+            </HBox>
+        </HBox>
+    </top>
+    
+    <center>
+        <SplitPane dividerPositions="0.5" orientation="HORIZONTAL">
+            
+            <ScrollPane fitToWidth="true" fitToHeight="true">
+                <VBox spacing="10" style="-fx-padding: 20;">
+                    <GridPane alignment="CENTER" hgap="10" vgap="10">
+                        <padding>
+                            <Insets top="20" right="20" bottom="20" left="20"/>
+                        </padding>
+
+                        
+                        <Label text="ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                        <Label fx:id="idLabel" text="" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                        
+                        <Label text="Заявка:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                        <ComboBox fx:id="appointmentComboBox" GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="300"/>
+
+                        
+                        <Label text="Клиент:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                        <ComboBox fx:id="clientComboBox" GridPane.rowIndex="2" GridPane.columnIndex="1" prefWidth="300"/>
+
+                        
+                        <Label text="Животное:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                        <ComboBox fx:id="petComboBox" GridPane.rowIndex="3" GridPane.columnIndex="1" prefWidth="300"/>
+
+                        
+                        <Label text="Врач:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                        <ComboBox fx:id="employeeComboBox" GridPane.rowIndex="4" GridPane.columnIndex="1" prefWidth="300"/>
+
+                        
+                        <Label text="Дата приема:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                        <DatePicker fx:id="visitDatePicker" GridPane.rowIndex="5" GridPane.columnIndex="1" prefWidth="300"/>
+
+                        
+                        <Label text="Время начала:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                        <ComboBox fx:id="startTimeComboBox" GridPane.rowIndex="6" GridPane.columnIndex="1" prefWidth="300" promptText="09:00"/>
+
+                        
+                        <Label text="Время окончания:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+                        <ComboBox fx:id="endTimeComboBox" GridPane.rowIndex="7" GridPane.columnIndex="1" prefWidth="300" promptText="10:00"/>
+
+                        
+                        <Label text="Диагноз:" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+                        <TextArea fx:id="diagnosisField" wrapText="true" prefRowCount="3" GridPane.rowIndex="8" GridPane.columnIndex="1" prefWidth="300"/>
+
+                        
+                        <Label text="Анамнез:" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
+                        <TextArea fx:id="anamnesisField" wrapText="true" prefRowCount="3" GridPane.rowIndex="9" GridPane.columnIndex="1" prefWidth="300"/>
+
+                        
+                        <Label text="Лечение:" GridPane.rowIndex="10" GridPane.columnIndex="0"/>
+                        <TextArea fx:id="treatmentField" wrapText="true" prefRowCount="3" GridPane.rowIndex="10" GridPane.columnIndex="1" prefWidth="300"/>
+
+                        
+                        <Label text="Рекомендации:" GridPane.rowIndex="11" GridPane.columnIndex="0"/>
+                        <TextArea fx:id="recommendationsField" wrapText="true" prefRowCount="3" GridPane.rowIndex="11" GridPane.columnIndex="1" prefWidth="300"/>
+
+                        
+                        <Label text="Общая стоимость:" GridPane.rowIndex="12" GridPane.columnIndex="0"/>
+                        <TextField fx:id="totalCostField" GridPane.rowIndex="12" GridPane.columnIndex="1" prefWidth="300" editable="false"/>
+
+                    </GridPane>
+                </VBox>
+            </ScrollPane>
+            
+            
+            <ScrollPane fitToWidth="true" fitToHeight="true">
+                <VBox spacing="15" style="-fx-padding: 20;">
+                    
+                    <VBox spacing="10">
+                        <Label text="Оказанные услуги" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+                        
+                        <HBox spacing="10">
+                            <Button text="Добавить услугу" onAction="#onAddVisitServiceButtonClick" prefWidth="150" prefHeight="30"/>
+                            <Button text="Удалить услугу" onAction="#onDeleteVisitServiceButtonClick" prefWidth="150" prefHeight="30"/>
+                        </HBox>
+
+                        <TableView fx:id="visitServicesTable" prefHeight="200">
+                            <columns>
+                                <TableColumn fx:id="visitServiceNameColumn" text="Услуга" prefWidth="200">
+                                </TableColumn>
+                                <TableColumn fx:id="visitServiceQuantityColumn" text="Кол-во" prefWidth="70">
+                                </TableColumn>
+                                <TableColumn fx:id="visitServicePriceColumn" text="Цена" prefWidth="90">
+                                </TableColumn>
+                                <TableColumn fx:id="visitServiceSumColumn" text="Сумма" prefWidth="90">
+                                </TableColumn>
+                                <TableColumn fx:id="visitServiceDiscountColumn" text="Скидка" prefWidth="90">
+                                </TableColumn>
+                                <TableColumn fx:id="visitServiceSumWithDiscountColumn" text="Итого" prefWidth="90">
+                                </TableColumn>
+                            </columns>
+                        </TableView>
+                    </VBox>
+
+                    <Separator/>
+
+                    
+                    <VBox spacing="10">
+                        <Label text="Товары" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+                        
+                        <HBox spacing="10">
+                            <Button text="Добавить товар" onAction="#onAddVisitProductButtonClick" prefWidth="150" prefHeight="30"/>
+                            <Button text="Удалить товар" onAction="#onDeleteVisitProductButtonClick" prefWidth="150" prefHeight="30"/>
+                        </HBox>
+
+                        <TableView fx:id="visitProductsTable" prefHeight="200">
+                            <columns>
+                                <TableColumn fx:id="visitProductNameColumn" text="Товар" prefWidth="250">
+                                </TableColumn>
+                                <TableColumn fx:id="visitProductQuantityColumn" text="Кол-во" prefWidth="80">
+                                </TableColumn>
+                                <TableColumn fx:id="visitProductPriceColumn" text="Цена" prefWidth="100">
+                                </TableColumn>
+                                <TableColumn fx:id="visitProductSumColumn" text="Сумма" prefWidth="100">
+                                </TableColumn>
+                            </columns>
+                        </TableView>
+                    </VBox>
+
+                    <Separator/>
+
+                    
+                    <VBox spacing="10">
+                        <Label text="Использованные материалы" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+                        
+                        <HBox spacing="10">
+                            <Button text="Добавить материал" onAction="#onAddMaterialButtonClick" prefWidth="150" prefHeight="30"/>
+                            <Button text="Удалить материал" onAction="#onDeleteMaterialButtonClick" prefWidth="150" prefHeight="30"/>
+                        </HBox>
+
+                        <TableView fx:id="materialsUsedTable" prefHeight="200">
+                            <columns>
+                                <TableColumn fx:id="materialNameColumn" text="Товар" prefWidth="300">
+                                </TableColumn>
+                                <TableColumn fx:id="materialQuantityColumn" text="Количество" prefWidth="150">
+                                </TableColumn>
+                            </columns>
+                        </TableView>
+                    </VBox>
+                </VBox>
+            </ScrollPane>
+        </SplitPane>
+    </center>
+</BorderPane>
+
+</AnchorPane>

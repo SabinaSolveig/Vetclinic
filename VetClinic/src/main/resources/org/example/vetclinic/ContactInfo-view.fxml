@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.Region?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.vetclinic.controller.ContactInfoController"
+      spacing="10"
+      style="-fx-padding: 20;">
+    
+    <Label fx:id="clientNameLabel" text="Клиент: " style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+    
+    <HBox spacing="10">
+        <Button text="Добавить контакт" onAction="#onAddButtonClick" prefWidth="140" prefHeight="30"/>
+        <Button text="Удалить контакт" onAction="#onDeleteButtonClick" prefWidth="140" prefHeight="30"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Закрыть" onAction="#onCloseButtonClick" prefWidth="100" prefHeight="30"/>
+    </HBox>
+    
+    <TableView fx:id="contactInfoTable" prefHeight="400" editable="true">
+        <columns>
+            <TableColumn fx:id="contactTypeColumn" text="Вид контакта" prefWidth="200" editable="true">
+            </TableColumn>
+            <TableColumn fx:id="contactValueColumn" text="Значение" prefWidth="250" editable="true">
+            </TableColumn>
+            <TableColumn fx:id="isPrimaryColumn" text="Основной" prefWidth="100" editable="true">
+            </TableColumn>
+            <TableColumn fx:id="notesColumn" text="Заметки" prefWidth="200" editable="true">
+            </TableColumn>
+        </columns>
+    </TableView>
+    
+    <Label text="Для редактирования: дважды кликните на ячейку" 
+           style="-fx-font-size: 12; -fx-text-fill: gray;"/>
+    
+</VBox>
+

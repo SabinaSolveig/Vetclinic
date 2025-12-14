@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.Region?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.vetclinic.controller.ProductCategoryController"
+      spacing="10"
+      style="-fx-padding: 20;">
+    
+    <Label text="Управление категориями товаров" style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+    
+    <HBox spacing="10">
+        <Button text="Добавить категорию" onAction="#onAddButtonClick" prefWidth="150" prefHeight="30"/>
+        <Button text="Удалить категорию" onAction="#onDeleteButtonClick" prefWidth="150" prefHeight="30"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Закрыть" onAction="#onCloseButtonClick" prefWidth="100" prefHeight="30"/>
+    </HBox>
+    
+    <TableView fx:id="categoryTable" prefHeight="400" editable="true">
+        <columns>
+            <TableColumn fx:id="categoryNameColumn" text="Название категории" prefWidth="300" editable="true">
+            </TableColumn>
+        </columns>
+    </TableView>
+    
+    <Label text="Для редактирования: дважды кликните на ячейку с названием категории" 
+           style="-fx-font-size: 12; -fx-text-fill: gray;"/>
+    
+</VBox>
+
